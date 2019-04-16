@@ -13,8 +13,26 @@ pip install pandas
 pip install torchfile
 ```
 <br>
+
+## Prepare Data
+Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train<br>
+* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br> """write code"""
+Download the coco image data from: """google drive url""" and extract them to data.<br> 
+Now your directories should look like: <br>
+```
+/StackGAN
+  data
+    coco
+      train
+      test
+``` 
+"""edit directories"""
 <br>
 
 ## Training
-Download the pretrained skip-thoughts embedding for COCO dataset and save it to data/coco/train
-* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt
+If you use the COCO dataset and my preprocessed embeddings: <br>
+* Stage-I GAN: Go to 'code' folder with ```cd code``` and write down the following command:```python main.py --cfg cfg/coco_s1.yml --gpu 0```. It is set for 120 epochs, and you can alter it by editing 'MAX_EPOCH' argument on coco_s1.yml file, which is in /code/cfg folder. <br>
+* Stage-II GAN: ```python main.py --cfg cfg/coco_s2.yml --gpu 0``` Similarly, you can edit the number of epoch by editing coco_s2.yml file.
+<br>
+
+## 
