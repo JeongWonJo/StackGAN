@@ -40,5 +40,6 @@ You can either skip the training process by downloading the pretrained model."""
 ## Evaluation
 You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml```.
 <br>
-
-*You would need to edit paths specified in .yml files when you are working with your own dataset from scratch*
+<br>
+<br>
+**You would need to edit paths specified in .yml files when you are working with your own dataset from scratch**
