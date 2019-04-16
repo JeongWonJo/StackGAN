@@ -42,4 +42,4 @@ You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml`
 <br>
 <br>
 <br>
-**You would need to edit paths specified in .yml files when you are working with your own dataset from scratch**
+**You would need to edit paths specified in .yml files when you are working with your own dataset from scratch.**
