@@ -16,7 +16,7 @@ pip install torchfile
 
 ## Prepare Data
 Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train<br>
-* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br> """write code"""
+* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br> """write code"""<br>
 Download the coco image data from: """google drive url""" and extract them to data.<br> 
 Now your directories should look like: <br>
 ```
@@ -34,5 +34,11 @@ If you use the COCO dataset and my preprocessed embeddings: <br>
 * Stage-I GAN: Go to 'code' folder with ```cd code``` and write down the following command:```python main.py --cfg cfg/coco_s1.yml --gpu 0```. It is set for 120 epochs, and you can alter it by editing 'MAX_EPOCH' argument on coco_s1.yml file, which is in /code/cfg folder. <br>
 * Stage-II GAN: ```python main.py --cfg cfg/coco_s2.yml --gpu 0``` Similarly, you can edit the number of epoch by editing coco_s2.yml file.
 <br>
+You can either skip the training process by downloading the pretrained model."""gdrive url"""
+<br>
 
-## 
+## Evaluation
+You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml```.
+<br>
+
+*You would need to edit paths specified in .yml files when you are working with your own dataset from scratch*
