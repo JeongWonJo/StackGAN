@@ -16,8 +16,10 @@ pip install torchfile
 
 ## Prepare Data
 Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train<br>
-* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br> """write code"""<br>
-Download the coco image data from: """google drive url""" and extract them to data.<br> 
+* [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br>
+Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.<br><br>
+"""write code"""<br>
+Download the coco image data from: """google drive url""" and extract them to *~/StackGAN/data/coco/.<br> 
 Now your directories should look like: <br>
 ```
 /StackGAN
@@ -25,20 +27,25 @@ Now your directories should look like: <br>
     coco
       train
       test
+      images
+      
 ``` 
 """edit directories"""
 <br>
 
 ## Training
 If you use the COCO dataset and my preprocessed embeddings: <br>
-* Stage-I GAN: Go to 'code' folder with ```cd code``` and write down the following command:```python main.py --cfg cfg/coco_s1.yml --gpu 0```. It is set for 120 epochs, and you can alter it by editing 'MAX_EPOCH' argument on coco_s1.yml file, which is in /code/cfg folder. <br>
-* Stage-II GAN: ```python main.py --cfg cfg/coco_s2.yml --gpu 0``` Similarly, you can edit the number of epoch by editing coco_s2.yml file.
+* Stage-I GAN: Go to 'code' folder with ```cd code``` and write down the following command:```python main.py --cfg cfg/coco_s1.yml --gpu 0```. It is set for 120 epochs, and you can alter it by editing 'MAX_EPOCH' argument on coco_s1.yml file, which is in /code/cfg folder. <br><br>
+You can see the image and model created during the final epoch in *~/StackGAN/output/coco_stage1/*. If you are using your own dataset, the folder name will be *~/StackGAN/output/**yourdataset**_stage1/*. <br>
+There will be three folders created inside the directory, 'Image', 'Log', and 'Model'. <br> <br>
+
+* Stage-II GAN: ```python main.py --cfg cfg/coco_s2.yml --gpu 0``` Just like Stage-I GAN, you can edit the number of epochs and the batch size by editing coco_s2.yml file.
 <br>
-You can either skip the training process by downloading the pretrained model."""gdrive url"""
 <br>
 
 ## Evaluation
 You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml```.
+It will read the sample captions you have written in *~/StackGAN/data/coco/sample_captions.txt*.
 <br>
 <br>
 <br>
