@@ -15,7 +15,8 @@ pip install torchfile
 <br>
 
 ## Prepare Data
-### Prepare Image and Caption Data<br>
+### Prepare Image and Caption Data
+<br>
 Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train<br>
 * [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br>
 Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.<br><br>
@@ -23,8 +24,9 @@ Your captions in caption.txt should be in the equivalent order with filenames.pi
 Download the coco image data from: """google drive url""" and extract them to *~/StackGAN/data/coco/.*
 <br>
 <br>
+
 ### Prepare Image and Caption Data
-<br> [Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors to *~/StackGAN/data/coco/.*
+[Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors to *~/StackGAN/data/coco/.*
 <br>
 <br>
 <br>
