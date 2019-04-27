@@ -45,9 +45,7 @@ Now your directories should look like: <br>
         filenames.pickle
         skip-thought-embeddings.pickle
       test
-        val_captions.t7
-        val_captions.txt
-        val_filename.txt
+        sample_captions.txt
       images
         (place all train images here)
         ...
