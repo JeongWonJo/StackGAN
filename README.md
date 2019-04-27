@@ -21,7 +21,7 @@ Download the preprocessed skip-thoughts embedding for COCO dataset and save it t
 * [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br>
 Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.<br><br>
 """write code"""<br>
-Download the coco image data from: """google drive url""" and extract them to *~/StackGAN/data/coco/.*
+Download the '2014 Train Images','2014 Train Images', and '2014 Train/Val annotations' from [coco dataset](http://cocodataset.org/#download). Extract them to *~/StackGAN/data/coco/.*
 <br>
 <br>
 
@@ -64,7 +64,6 @@ Now your directories should look like: <br>
       dictionary.txt
       uni_skip.npz.pkl
 ``` 
-"""edit directories"""
 <br>
 
 ## Training
