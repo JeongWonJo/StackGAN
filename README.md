@@ -15,20 +15,52 @@ pip install torchfile
 <br>
 
 ## Prepare Data
+### Prepare Image and Caption Data
 Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train<br>
 * [Optional] To make embedding for your own dataset, ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` <br>
 Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.<br><br>
 """write code"""<br>
-Download the coco image data from: """google drive url""" and extract them to *~/StackGAN/data/coco/.<br> 
+Download the coco image data from: """google drive url""" and extract them to *~/StackGAN/data/coco/.*
+<br>
+<br>
+### Prepare Image and Caption Data
+[Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors from to *~/StackGAN/data/coco/.*
+<br>
+<br>
+<br>
 Now your directories should look like: <br>
 ```
 /StackGAN
+  code
   data
     coco
       train
+        caption.pickle
+        filenames.pickle
+        skip-thought-embeddings.pickle
       test
+        val_captions.t7
+        val_captions.txt
+        val_filename.txt
       images
-      
+        (place all train images here)
+        ...
+        COCO_train2014_000000581921.jpg
+        ...
+      test_image
+        (place all test images here)
+        ...
+        COCO_test2014_000000581923.jpg
+        ...
+    skipthoughts
+      (files necessary for skipthoughts)
+      bi_skip.npz
+      btable.npy
+      uni_skip.npz
+      utable.npy
+      bi_skip.npz.pkl
+      dictionary.txt
+      uni_skip.npz.pkl
 ``` 
 """edit directories"""
 <br>
@@ -45,7 +77,9 @@ There will be three folders created inside the directory, 'Image', 'Log', and 'M
 
 ## Evaluation
 You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml```.
-It will read the sample captions you have written in *~/StackGAN/data/coco/sample_captions.txt*.
+It will read the sample captions you have written in *~/StackGAN/data/coco/sample_captions.txt*. <br>
+(The code will automatically covert the captions into skip-thought-embedding.)
+
 <br>
 <br>
 <br>
