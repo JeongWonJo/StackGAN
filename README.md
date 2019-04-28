@@ -1,7 +1,7 @@
 # StackGAN
 ## Dependencies<br>
 Python 3.6<br>
-Pytorch with Cuda 9.0 (```conda install pytorch torchvision cudatoolkit=9.0 -c pytorch```)<br><br>
+Pytorch with Cuda 10.0 (```conda install pytorch torchvision cudatoolkit=10.0 -c pytorch```)<br><br>
 Add the project folder to PYTHONPATH; write down following command line on the project folder(```export PYTHONPATH="${PYTHONPATH}:/your/home/path/project/folder/StackGAN"```)<br><br>
 Install following packages with ```pip install```: 
 ```
@@ -11,6 +11,9 @@ pip install python-dateutil
 pip install easydict
 pip install pandas
 pip install torchfile
+pip install nltk
+pip install scikit-learn
+pip install scipy
 ```
 <br>
 
@@ -19,7 +22,8 @@ pip install torchfile
 
 Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train.
 <br>
-[Optional] To make embedding for your own dataset, go to *~/StackGAN/code/* and run ```python miscc/skipthought_embed.py --caption_path /path/to/your/caption.txt``` 
+[Optional] To make embedding for your own dataset, go to *~/StackGAN/code/micc/* and run ```python skipthought_embed.py --caption_path path/to/your/caption.txt```
+<br>
 <br>
 Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.
 <br>
@@ -30,7 +34,7 @@ Download the '2014 Train Images','2014 Train Images', and '2014 Train/Val annota
 <br>
 
 ### Prepare Image and Caption Data
-[Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors to *~/StackGAN/data/coco/.*
+[Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors to *~/StackGAN/code/miscc/skipthoughts/*.
 <br>
 <br>
 <br>
@@ -38,6 +42,16 @@ Now your directories should look like: <br>
 ```
 /StackGAN
   code
+    miscc
+      skipthoughts
+        (files necessary for skipthoughts)
+        bi_skip.npz
+        btable.npy
+        uni_skip.npz
+        utable.npy
+        bi_skip.npz.pkl
+        dictionary.txt
+        uni_skip.npz.pkl
   data
     coco
       train
@@ -56,15 +70,6 @@ Now your directories should look like: <br>
         ...
         COCO_test2014_000000581923.jpg
         ...
-    skipthoughts
-      (files necessary for skipthoughts)
-      bi_skip.npz
-      btable.npy
-      uni_skip.npz
-      utable.npy
-      bi_skip.npz.pkl
-      dictionary.txt
-      uni_skip.npz.pkl
 ``` 
 <br>
 
@@ -79,10 +84,14 @@ There will be three folders created inside the directory, 'Image', 'Log', and 'M
 <br>
 
 ## Evaluation
-You can evaluate the model by running ```python main.py --cfg cfg/coco_eval.yml```.
-It will read the sample captions you have written in *~/StackGAN/data/coco/test/sample_captions.txt*. <br>
-(The code will automatically covert the captions into skip-thought-embedding.)
-
+### Generate Skip-Thought-Embedding
+First, you need to convert captions to skip-thought-embedding.<br>
+Save your caption in *~/StackGAN/data/coco/sample_captions.txt* and go to *~/StackGAN/code/miscc/*. <br>
+Run ```python skipthought_embed.py --caption_path="data/coco/sample_captions.txt"```, and the converted caption file will be saved as *~/StackGAN/data/coco/sample_captions.pkl* <br>
+<br>
+### Generate Sample Images
+After generating skip-thought embeddings, run ```python main.py --cfg cfg/coco_eval.yml```.
+It will save images in *~/StackGAN/model/*.
 <br>
 <br>
 <br>
