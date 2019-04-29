@@ -6,14 +6,14 @@ Add the project folder to PYTHONPATH; write down following command line on the p
 Install following packages with ```pip install```: 
 ```
 pip install tensorboard==1.0.0a6
-pip install theano
-pip install python-dateutil
-pip install easydict
+pip install theano==1.0.4
+pip install python-dateutil==2.8.0
+pip install easydict==1.9
 pip install pandas
-pip install torchfile
+pip install torchfile==0.1.0
 pip install nltk
-pip install scikit-learn
-pip install scipy
+pip install scikit-learn==0.20.3
+pip install scipy==1.2.1
 ```
 <br>
 
