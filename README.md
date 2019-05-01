@@ -9,9 +9,9 @@ pip install tensorboard==1.0.0a6
 pip install theano==1.0.4
 pip install python-dateutil==2.8.0
 pip install easydict==1.9
-pip install pandas
+pip install pandas==0.24.2
 pip install torchfile==0.1.0
-pip install nltk
+pip install nltk==3.4
 pip install scikit-learn==0.20.3
 pip install scipy==1.2.1
 ```
