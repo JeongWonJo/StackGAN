@@ -5,93 +5,54 @@ Pytorch with Cuda 10.0 (```conda install pytorch torchvision cudatoolkit=10.0 -c
 Add the project folder to PYTHONPATH; write down following command line on the project folder(```export PYTHONPATH="${PYTHONPATH}:/your/home/path/project/folder/StackGAN"```)<br><br>
 Install following packages with ```pip install```: 
 ```
-pip install tensorboard==1.0.0a6
-pip install theano==1.0.4
+pip install tensorflow==0.12.1
+pip install torch torchvision
+export PYTHONPATH="${PYTHONPATH}:/home/jjw49/StackGAN"
+pip install prettytensor==0.7.1
+pip install progressbar==2.5
 pip install python-dateutil==2.8.0
-pip install easydict==1.9
+pip install easydict
+pip install torchfile
 pip install pandas==0.24.2
-pip install torchfile==0.1.0
+pip install scipy==1.1.0
+pip install pyyaml==5.1
+pip install numpy==1.16.2
+pip install scikit-learn
 pip install nltk==3.4
-pip install scikit-learn==0.20.3
-pip install scipy==1.2.1
+pip install theano==1.0.4
 ```
+<br>
 <br>
 
 ## Prepare Data
 ### Prepare Image and Caption Data
 
-Download the preprocessed skip-thoughts embedding for COCO dataset and save it to data/coco/train.
-<br>
-[Optional] To make embedding for your own dataset, go to *~/StackGAN/code/micc/* and run ```python skipthought_embed.py --caption_path path/to/your/caption.txt```
-<br>
-<br>
-Your captions in caption.txt should be in the equivalent order with filenames.pickle. For instance, *x* line in filenames.pickle specifies the path to *x* image, and similarly, *x* line in caption.txt file describes *x* image.
-<br>
-<br>
-<br>
-Download the '2014 Train Images','2014 Train Images', and '2014 Train/Val annotations' from [coco dataset](http://cocodataset.org/#download). Extract them to *~/StackGAN/data/coco/.*
-<br>
-<br>
-
-### Prepare Image and Caption Data
-[Download](https://github.com/ryankiros/skip-thoughts) vocabularies for skip-thought vectors to *~/StackGAN/code/miscc/skipthoughts/*.
-<br>
-<br>
-<br>
-Now your directories should look like: <br>
+Download the [birds image](http://www.vision.caltech.edu/visipedia/CUB-200-2011.html) and extract it to ```Data/birds/```.<br>
+*command:* 
 ```
-/StackGAN
-  code
-    miscc
-      skipthoughts
-        (files necessary for skipthoughts)
-        bi_skip.npz
-        btable.npy
-        uni_skip.npz
-        utable.npy
-        bi_skip.npz.pkl
-        dictionary.txt
-        uni_skip.npz.pkl
-  data
-    coco
-      train
-        caption.pickle
-        filenames.pickle
-        skip-thought-embeddings.pickle
-      test
-        sample_captions.txt
-      images
-        (place all train images here)
-        ...
-        COCO_train2014_000000581921.jpg
-        ...
-      test_image
-        (place all test images here)
-        ...
-        COCO_test2014_000000581923.jpg
-        ...
-``` 
+cd Data/birds
+wget http://www.vision.caltech.edu/visipedia-data/CUB-200-2011/CUB_200_2011.tgz
+tar -zxvf CUB_200_2011.tgz
+```
+
+Preprocess images.
+```python misc/preprocess_birds.py```
+
 <br>
+<br>
+### vocabulary for skip-thought vectors
 
-## Training
-If you use the COCO dataset and my preprocessed embeddings: <br>
-* Stage-I GAN: Go to 'code' folder with ```cd code``` and write down the following command:```python main.py --cfg cfg/coco_s1.yml --gpu 0```. It is set for 120 epochs, and you can alter it by editing 'MAX_EPOCH' argument on coco_s1.yml file, which is in /code/cfg folder. <br><br>
-You can see the image and model created during the final epoch in *~/StackGAN/output/coco_stage1/*. If you are using your own dataset, the folder name will be *~/StackGAN/output/**yourdataset**_stage1/*. <br>
-There will be three folders created inside the directory, 'Image', 'Log', and 'Model'. <br> <br>
 
-* Stage-II GAN: ```python main.py --cfg cfg/coco_s2.yml --gpu 0``` Just like Stage-I GAN, you can edit the number of epochs and the batch size by editing coco_s2.yml file.
+
+## Pretrained Model
+Download [birds model](https://drive.google.com/open?id=0B3y_msrWZaXLZVNRNFg4d055Q1E) trained from skip-thought text embeddings. Download and save it to ```models/```.
+
 <br>
 <br>
 
-## Evaluation
-### Generate Skip-Thought-Embedding
-First, you need to convert captions to skip-thought-embedding.<br>
-Save your caption in *~/StackGAN/data/coco/sample_captions.txt* and go to *~/StackGAN/code/miscc/*. <br>
-Run ```python skipthought_embed.py --caption_path="data/coco/sample_captions.txt"```, and the converted caption file will be saved as *~/StackGAN/data/coco/sample_captions.pkl* <br>
-<br>
-### Generate Sample Images
-After generating skip-thought embeddings, run ```python main.py --cfg cfg/coco_eval.yml```.
-It will save images in *~/StackGAN/model/*.
+## Run Demos
+Run ```python birds_skip_thought_demo.py --cfg demo/cfg/birds-skip-thought-demo.yml --gpu 0``` to generate bird samples from sentences. The results will be saved to ```Data/birds/example_captions-skip-thought/```
+
 <br>
 <br>
 <br>
