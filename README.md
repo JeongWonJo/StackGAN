@@ -38,10 +38,21 @@ tar -zxvf CUB_200_2011.tgz
 Preprocess images.
 ```python misc/preprocess_birds.py```
 
-<br>
-<br>
-### vocabulary for skip-thought vectors
 
+### vocabulary for skip-thought vectors
+```
+cd Data/skipthoughts/
+wget http://www.cs.toronto.edu/~rkiros/models/dictionary.txt
+wget http://www.cs.toronto.edu/~rkiros/models/utable.npy
+wget http://www.cs.toronto.edu/~rkiros/models/btable.npy
+wget http://www.cs.toronto.edu/~rkiros/models/uni_skip.npz
+wget http://www.cs.toronto.edu/~rkiros/models/uni_skip.npz.pkl
+wget http://www.cs.toronto.edu/~rkiros/models/bi_skip.npz
+wget http://www.cs.toronto.edu/~rkiros/models/bi_skip.npz.pkl
+```
+
+<br>
+<br>
 
 
 ## Pretrained Model
@@ -52,8 +63,5 @@ Download [birds model](https://drive.google.com/open?id=0B3y_msrWZaXLZVNRNFg4d05
 
 ## Run Demos
 Run ```python birds_skip_thought_demo.py --cfg demo/cfg/birds-skip-thought-demo.yml --gpu 0``` to generate bird samples from sentences. The results will be saved to ```Data/birds/example_captions-skip-thought/```
-
 <br>
-<br>
-<br>
-**You would need to edit paths specified in .yml files when you are working with your own dataset from scratch.**
+Edit sentences in ```Data/birds/example_captions.txt``` to customize sentences.
