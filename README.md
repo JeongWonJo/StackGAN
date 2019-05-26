@@ -1,8 +1,7 @@
 # StackGAN
 ## Dependencies<br>
 Python 3.6<br>
-Pytorch with Cuda 10.0 (```conda install pytorch torchvision cudatoolkit=10.0 -c pytorch```)<br><br>
-Add the project folder to PYTHONPATH; write down following command line on the project folder(```export PYTHONPATH="${PYTHONPATH}:/your/home/path/project/folder/StackGAN"```)<br><br>
+
 Install following packages with ```pip install```: 
 ```
 pip install tensorflow==0.12.1
